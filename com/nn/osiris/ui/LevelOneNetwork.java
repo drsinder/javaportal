@@ -56,6 +56,8 @@ public class LevelOneNetwork extends Thread
 
 	/** Thread that writes network data at a metered rate. */
 	private NetWriter nw_handle;
+	
+	int debug_cnt;
 
 	/**
 	 * Registered network listener. This should be used by the level one
@@ -69,6 +71,7 @@ public class LevelOneNetwork extends Thread
 	public LevelOneNetwork(LevelOnePanel panel)
 	{
 		this.panel = panel;
+		this.debug_cnt = 0;
 	}
 
 	/**
@@ -373,6 +376,15 @@ public class LevelOneNetwork extends Thread
 	{
 		// Default 50 keys/sec limit.
 		write(buffer, offset, length, 20*length);
+		if	(PlatoConsts.is_debugging)
+		{
+		int i = 0;
+		while (i < length)
+		{
+			System.out.println("Outbound  >>  Data="+ " 0x" + String.format("%x", buffer[i]) + " : " + buffer[i] + " : " + (char) buffer[i]);
+			i++;
+		}
+		}
 	}
 
 	/**

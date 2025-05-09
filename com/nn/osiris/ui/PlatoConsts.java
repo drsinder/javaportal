@@ -18,7 +18,7 @@ class PlatoConsts
 	static final public String	theName = "PlatoAccess";
 	
 	// version string displayed in dialog and sent to system via -local-
-	static public String	short_version = "0.1.0 beta";
+	static public String	short_version = "1.0 beta2";
 	static public String	options_file = "portopt.cf2";
 	// user-specific configuration file name
 	static public String	user_config_file = "jpterm.cfg";
@@ -31,14 +31,14 @@ class PlatoConsts
 	static public String	config_string = "L2pF";
 	static public int		config_code = 0x4c327046;	// L2pF
 	// default width of portal window
-	static final int		default_width = 640;
+	static int		default_width = 640;
 	
 	static  float  			SCALE = (float)1; 
 
 	static public boolean	is_threaded = false;		// for Z80  -- currently ignored
 	static public boolean	is_macintosh = false;
 	static public boolean	is_windows = false;
-	static public boolean	is_debugging = true;
+	static public boolean	is_debugging = false;
 	static public boolean	is_applet = false;
 	static public boolean	is_quicktime = false;
 	// Default tcp host & port to connect to:

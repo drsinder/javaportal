@@ -362,7 +362,19 @@ public class PlatoAccess extends javax.swing.JFrame
 				settings.setProperty("mtboot",args[i+1]);
 			}
 			if	(args[i].equals("-width") && i+1 < args.length)
-				frame_width = Integer.parseInt(args[i+1]);
+			{
+				int w = Integer.parseInt(args[i+1]);
+				if (w > 800)
+					w = 800;
+				else if (w < 512)
+					w = 512;
+						
+				w = w & 0xfff7;
+				
+				frame_width = PlatoConsts.default_width= Integer.parseInt(args[i+1]);
+			}
+			if	(args[i].equals("-debug"))
+				PlatoConsts.is_debugging = true;
 		}
 
 		PlatoAccess jportal = new PlatoAccess();

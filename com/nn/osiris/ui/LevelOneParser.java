@@ -2290,6 +2290,10 @@ public class LevelOneParser implements java.awt.event.ActionListener
 			//need_title = false;
 		}
 
+		if	(PlatoConsts.is_debugging)	
+			System.out.println(levelone_network.debug_cnt++ + ":  Data="+ " 0x" + String.format("%x", c) + " : " + c + " : " + (char)c);
+
+		
 		if ( cmd_pending && ESC != c)
 		{
 			if ( c == STX && 0 == data_pnt)
@@ -2298,6 +2302,12 @@ public class LevelOneParser implements java.awt.event.ActionListener
 				data_proc = L1PPDataMode;
 				initPlatoMode();
 			}
+			
+			else if (cmd_pending && c == 0x5b )
+			{
+				cmd_pending = false;
+			}
+	
 			else
 			{
 				if (data_pnt < data.length)
@@ -2476,8 +2486,8 @@ public class LevelOneParser implements java.awt.event.ActionListener
 		
 	
 		
-		//if	(PortalConsts.is_debugging)	
-			System.out.println("Data="+ " 0x" + String.format("%x", c) + " : " + c + " : " + (char)c);
+		if	(PlatoConsts.is_debugging)	
+			System.out.println(levelone_network.debug_cnt++ + ":  Data="+ " 0x" + String.format("%x", c) + " : " + c + " : " + (char)c);
 		
 		if (c >= 0x20 && is_quick_text_on)
 		{
@@ -3866,7 +3876,7 @@ public class LevelOneParser implements java.awt.event.ActionListener
 			case 0x71:
 				is_signed_on = true;
 				
-				if (levelone_network.port  != 6005)
+				if (levelone_network.port  != 6005 && levelone_network.port  != 8999)
 					sub_type = 16;
 				SendEcho ( sub_type);
 				break;

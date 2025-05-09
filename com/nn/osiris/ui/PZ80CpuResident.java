@@ -851,7 +851,7 @@ public class PZ80CpuResident {
     	select |= bold ? 04000 : 0;
     	select |= italic ? 02000 : 0;
 
-    	parser.FontSelect2(select);
+    	parser.FontSelect2(select, true);
     }
     	
     /**
