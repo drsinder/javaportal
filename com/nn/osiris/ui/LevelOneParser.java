@@ -2486,8 +2486,13 @@ public class LevelOneParser implements java.awt.event.ActionListener
 		
 	
 		
+<<<<<<< HEAD
 		if	(PlatoConsts.is_debugging)	
 			System.out.println(levelone_network.debug_cnt++ + ":  Data="+ " 0x" + String.format("%x", c) + " : " + c + " : " + (char)c);
+=======
+		//if	(PortalConsts.is_debugging)	
+			//System.out.println("Data="+ " 0x" + String.format("%x", c) + " : " + c + " : " + (char)c);
+>>>>>>> origin/master
 		
 		if (c >= 0x20 && is_quick_text_on)
 		{
@@ -10340,8 +10345,8 @@ public class LevelOneParser implements java.awt.event.ActionListener
 	{
 		g.setXORMode(Color.white);
 
-		x1 = x1 << 1;
-		y1 = (y1 << 1) - 7;
+		x1 = (int)(x1 * PlatoConsts.SCALE);
+		y1 = (int)(y1 * PlatoConsts.SCALE) - 7;
 		switch (cursor_style)
 		{
 			case 0:	// underline
