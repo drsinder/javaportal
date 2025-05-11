@@ -27,3 +27,4 @@ CVS*
 /.classpath
 
 *.cfg
+/bin/
