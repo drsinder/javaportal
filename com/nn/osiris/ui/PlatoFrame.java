@@ -261,16 +261,24 @@ public class PlatoFrame
 		      }  
 		}
 	// user-specific config file
-	File	uref = new File(user_config_fn);
-	// global config file
-	File	gref = new File(global_config_fn);
-
-		// use user-specific preferences if it exists -- if not
-		// use global one if possible
-		if	(!uref.exists() && gref.exists())
-			current_config_file = gref;
-		else
-			current_config_file = uref;
+		try {
+			File	uref = new File(user_config_fn);
+			// global config file
+			File	gref = new File(global_config_fn);
+		
+				// use user-specific preferences if it exists -- if not
+				// use global one if possible
+				if	(!uref.exists() && gref.exists())
+					current_config_file = gref;
+				else
+					current_config_file = uref;
+				
+		}
+		catch( Exception ex)
+		{
+			 JOptionPane.showMessageDialog(null, user_config_fn +  " or "  + global_config_fn, "File not found: ", JOptionPane.INFORMATION_MESSAGE);
+	   
+		}
 	}
 
 	/**
@@ -442,6 +450,8 @@ public class PlatoFrame
 
 			sb.append("<?xml version=\"1.0\" standalone='yes'?>\n");
 			sb.append("<portaloptions>\n");
+//			sb.append("<options multi_connect=\"true\" disconnect_at_signoff=\"false\" disable_signon_display=\"false\" lock_configuration=\"false\"/>\n");
+
 			options.toXML(sb);
 			sb.append("\n</portaloptions>");
 

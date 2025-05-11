@@ -382,7 +382,7 @@ public class PlatoAccess extends javax.swing.JFrame
 		jportal.PortalConstruct();
 	}
 
-	/**
+	/**  
 	 * Converts boolean to string - dont use Boolean.toString because
 	 * of JDK 1.4 limitation on that routine...
 	 */
