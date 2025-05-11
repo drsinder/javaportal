@@ -19,7 +19,7 @@ class Options
 
 	public Options()
 	{
-		multi_connect = false;
+		multi_connect = true;
 		disconnect_at_signoff = false;
 		disable_signon_display = false;
 		lock_configuration = false;
