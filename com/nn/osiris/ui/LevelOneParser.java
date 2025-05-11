@@ -2483,17 +2483,10 @@ public class LevelOneParser implements java.awt.event.ActionListener
 		int i;
 		int postCmdFni;
 		int postCmdFnj;
-		
 	
-		
-<<<<<<< HEAD
 		if	(PlatoConsts.is_debugging)	
 			System.out.println(levelone_network.debug_cnt++ + ":  Data="+ " 0x" + String.format("%x", c) + " : " + c + " : " + (char)c);
-=======
-		//if	(PortalConsts.is_debugging)	
-			//System.out.println("Data="+ " 0x" + String.format("%x", c) + " : " + c + " : " + (char)c);
->>>>>>> origin/master
-		
+
 		if (c >= 0x20 && is_quick_text_on)
 		{
 			quick_text_data[quick_text_length++] = (byte) c;
