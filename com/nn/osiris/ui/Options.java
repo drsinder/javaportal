@@ -37,8 +37,8 @@ class Options
 
 	public void toXML(StringBuffer sb)
 	{
-//		sb.append("<options multi_connect=\""+JPortal.boolString(multi_connect)+"\"");
-		sb.append("<options disconnect_at_signoff=\""+PlatoAccess.boolString(disconnect_at_signoff)+"\"");
+		sb.append("<options multi_connect=\""+PlatoAccess.boolString(multi_connect)+"\"");
+		sb.append(" disconnect_at_signoff=\""+PlatoAccess.boolString(disconnect_at_signoff)+"\"");
 //		sb.append(" disable_signon_display=\""+JPortal.boolString(disable_signon_display)+"\"");
 //		sb.append(" lock_configuration=\""+JPortal.boolString(lock_configuration)+"\"");
 		sb.append(" scalex=\""+scale2x+"\"");

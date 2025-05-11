@@ -54,6 +54,8 @@ public class PlatoFrame
 	FocusManager	oldFocusManager;	// Focus manager before redirecting Tab.
 	FocusManager	ourFocusManager;	// Our focus manager that lets tab get to NovaNET
 
+	boolean needcfg = false;
+	
 	/*********
 	 * Configuration data
 	 ********/
@@ -215,12 +217,17 @@ public class PlatoFrame
 		{
 			options_file = new File(PlatoConsts.options_file);
 
-		String	user_prop= startup_properties.getProperty("configfile");
+			String	user_prop= startup_properties.getProperty("configfile");
 
 			if	(null != user_prop)
 				user_config_fn = user_prop;
 		}
-
+		
+		if( !options_file.exists())
+		{
+			saveOptions();		
+		}
+			
 		if (user_config_fn == null)
 		{
 		
@@ -276,8 +283,9 @@ public class PlatoFrame
 		}
 		catch( Exception ex)
 		{
-			 JOptionPane.showMessageDialog(null, user_config_fn +  " or "  + global_config_fn, "File not found: ", JOptionPane.INFORMATION_MESSAGE);
-	   
+			 JOptionPane.showMessageDialog(null, global_config_fn,
+					 "Default File not found ", JOptionPane.INFORMATION_MESSAGE);
+			 needcfg = true;
 		}
 	}
 
@@ -1261,6 +1269,7 @@ public class PlatoFrame
 	 */
 	public void doOpenConnection(Session session)
 	{
+
 		if	((noTabbing() && null != level_one_panel) || (portal_pane.getTabCount() > 0 && !options.multi_connect))
 		{
 			JOptionPane.showMessageDialog(
@@ -2063,7 +2072,16 @@ public class PlatoFrame
 			}
 		}
 		*/
-
+	
+		
+		if (needcfg)
+		{
+			needcfg = false;
+			newCommunicationsDialog();
+			doOpenConnection(last_session);
+			return;
+		}
+		
 		// make command line options overrule everything else --
 		if	(startup_properties.getProperty("network_host") != null)
 		{
