@@ -1306,49 +1306,13 @@ public class PlatoFrame
 		
 		compTab(lop);
 
-/*
-		if (portal_pane.getTabCount() > 1)
-		{
-			currentPanel().setVisible(false);
-			lop.setVisible(true);
-			setComponentZOrder(currentPanel(), getComponentZOrder(portal_pane) + portal_pane.getTabCount() + 5);
-			setComponentZOrder(lop, getComponentZOrder(portal_pane) + portal_pane.getTabCount() + 6);
-		}
-*/		
-
-		
-/*
-		currentPanel().setVisible(false);
-		lop.setVisible(true);
-		
-		lop.setFocusable(true);
-		lop.requestFocusInWindow();
-
-*/
-
-/*
-		if (portal_pane.getTabCount() > 1)
-		{		
-	    	int	tab_index = findPanelIndex(lop);
-	    	portal_pane.getTabComponentAt(tab_index).setFocusable(true);
-	    	portal_pane.getTabComponentAt(tab_index).requestFocusInWindow();
-	    	
-			SwingUtilities.invokeLater(new Runnable() {
-			    public void run() {
-			    	int	tab_index = findPanelIndex(lop);
-			    	portal_pane.getTabComponentAt(tab_index).requestFocusInWindow();
-			    }
-			});
-		}	
-*/
-	
 		this.pack();
 	}
 
 	/**
 	 * Returns index in the JTabbedPane for the given level one panel.
 	 */
-	int findPanelIndex(LevelOnePanel lop)
+	public int findPanelIndex(LevelOnePanel lop)
 	{
 	int	cnt = portal_pane.getTabCount();
 
@@ -1657,7 +1621,7 @@ public class PlatoFrame
 		}
 
 		if	(e.getActionCommand().equals("ReOpen Connection"))
-			doOpenConnection(last_session);
+			doOpenConnection(last_session);		
 
 		if	(e.getActionCommand().equals("Close Connection"))
 			doCloseConnection();
