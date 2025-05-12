@@ -326,6 +326,15 @@ public class LevelOnePanel
 
 			}
 
+/*
+			setFocusable(true);
+			SwingUtilities.invokeLater(new Runnable() {
+			    public void run() {
+			        requestFocusInWindow();
+			    }
+			});
+*/
+			
 			return true;
 		}
 		catch (Exception exception)
@@ -334,6 +343,8 @@ public class LevelOnePanel
 			return false;
 		}
 		}
+		
+		
 		
 	}
 

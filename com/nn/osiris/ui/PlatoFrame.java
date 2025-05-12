@@ -1286,8 +1286,8 @@ public class PlatoFrame
 //		if	(session.host.equals(PortalConsts.default_host))
 //			return;
 
-	LevelOnePanel	lop = new LevelOnePanel(this,PlatoAccess.frame_width);
-	double			rate = 0.0;
+		LevelOnePanel	lop = new LevelOnePanel(this,PlatoAccess.frame_width);
+		// double			rate = 0.0;
 
 		lop.addNetworkListener(this);
 		lop.addComponentListener(this);
@@ -1303,9 +1303,45 @@ public class PlatoFrame
 			}
 		}
 		lop.startSession(session);
-
-		compTab(lop);
 		
+		compTab(lop);
+
+/*
+		if (portal_pane.getTabCount() > 1)
+		{
+			currentPanel().setVisible(false);
+			lop.setVisible(true);
+			setComponentZOrder(currentPanel(), getComponentZOrder(portal_pane) + portal_pane.getTabCount() + 5);
+			setComponentZOrder(lop, getComponentZOrder(portal_pane) + portal_pane.getTabCount() + 6);
+		}
+*/		
+
+		
+/*
+		currentPanel().setVisible(false);
+		lop.setVisible(true);
+		
+		lop.setFocusable(true);
+		lop.requestFocusInWindow();
+
+*/
+
+/*
+		if (portal_pane.getTabCount() > 1)
+		{		
+	    	int	tab_index = findPanelIndex(lop);
+	    	portal_pane.getTabComponentAt(tab_index).setFocusable(true);
+	    	portal_pane.getTabComponentAt(tab_index).requestFocusInWindow();
+	    	
+			SwingUtilities.invokeLater(new Runnable() {
+			    public void run() {
+			    	int	tab_index = findPanelIndex(lop);
+			    	portal_pane.getTabComponentAt(tab_index).requestFocusInWindow();
+			    }
+			});
+		}	
+*/
+	
 		this.pack();
 	}
 
