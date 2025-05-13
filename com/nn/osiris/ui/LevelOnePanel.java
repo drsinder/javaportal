@@ -63,6 +63,7 @@ public class LevelOnePanel
 	ImageIcon	offlineIcon;
 	ConnectDialog	connectDialog;
 
+	public boolean needs_focus;
 
 	/**
 	 * Gets the image to display when the user is not connected
@@ -88,6 +89,8 @@ public class LevelOnePanel
   	{
   		super(false);	// Don't use double buffering.
 
+  		needs_focus = true;
+  		
   		this.parent_frame = parent_frame;
 		panel_width = width;
 

@@ -9007,6 +9007,13 @@ public class LevelOneParser implements java.awt.event.ActionListener
 		sys_y = center_y;
 
 		ClipSet (sys_x, sys_y, wrap_x+sys_x, wrap_y+sys_y,true);
+		
+		if (((LevelOnePanel)(levelone_container)).needs_focus )
+		{
+			((LevelOnePanel)(levelone_container)).needs_focus = false;
+			((PlatoFrame)parent_frame).focusme();
+		}
+		
 	}
 
 	/**
@@ -9021,7 +9028,7 @@ public class LevelOneParser implements java.awt.event.ActionListener
 		wrap_x = terminalWidth - 1;
 		wrap_y = terminalWidth - 1;
 		
-		ClipSet (sys_x, sys_y, wrap_x+sys_x, wrap_y+sys_y, true);
+		ClipSet (sys_x, sys_y, wrap_x+sys_x, wrap_y+sys_y, true);	
 	}
 
 	/**

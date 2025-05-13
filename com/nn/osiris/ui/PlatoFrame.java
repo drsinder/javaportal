@@ -39,8 +39,8 @@ public class PlatoFrame
 	MacGlueInterface	mgi = null;		// macintosh-specific goo
 	KeyBarDialog	key_bar_dialog;		// dialog to assist user with NovaNET fkeys
 	NovaKeysDialog	nova_keys_dialog;	// dialog that displays help on NovaNET keys
-	JTabbedPane		portal_pane;		// pane holding LevelOnePanels for connections
-	LevelOnePanel	level_one_panel;
+	public JTabbedPane	portal_pane;	// pane holding LevelOnePanels for connections
+	public LevelOnePanel	level_one_panel;
 	boolean			qt_open;			// true if quicktime opened
 	boolean			window_mapped;		// true if window has been mapped
 	boolean			ended_session;		// true if we terminated our session
@@ -69,6 +69,18 @@ public class PlatoFrame
 
 	
 	public static PlatoFrame mainFrame;
+
+	public void focusme()
+	{
+		int cnt = portal_pane.getComponentCount();
+		Component comp = portal_pane.getComponentAt(cnt-1);
+		SwingUtilities.invokeLater(new Runnable() {
+		    public void run() {
+		        portal_pane.setSelectedComponent(comp);
+		    }
+		});	
+	}
+
 
 	/**
 	 * Gets configuration information from the registry
