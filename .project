@@ -14,4 +14,10 @@
 	<natures>
 		<nature>org.eclipse.jdt.core.javanature</nature>
 	</natures>
+	<variableList>
+		<variable>
+			<name>Extra</name>
+			<value>file:/C:/Repos/javaportal/jarfixed</value>
+		</variable>
+	</variableList>
 </projectDescription>
