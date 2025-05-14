@@ -964,7 +964,7 @@ public class PlatoFrame
 
 
 //	Create lower layer
-	java.net.URL	imgURL = getClass().getResource("/com/nn/images/notes.jpg");
+	java.net.URL	imgURL = getClass().getResource("/com/nn/images/DLB.jpg");
 	ImageIcon		offlineIcon;
 
 		if	(null != imgURL)
@@ -977,7 +977,7 @@ public class PlatoFrame
 			cp.add(logo_label,BorderLayout.CENTER);
 		}
 		else if (PlatoConsts.is_debugging)
-			System.out.println("could not read logo com/nn/images/notes.jpg");
+			System.out.println("could not read logo com/nn/images/DLB.jpg");
 
 //	Create tabbed pane
 		portal_pane = new JTabbedPane();
