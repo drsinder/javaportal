@@ -711,6 +711,10 @@ public class PlatoFrame
 		jMenuHelp.add (item = new JMenuItem("Settings Menu Help..."));
 		item.addActionListener(this);
 		jMenuHelp.addSeparator();
+
+		jMenuHelp.add (item = new JMenuItem("About Donald Bitzer..."));
+		item.addActionListener(this);
+				
 		jMenuHelp.add (item = new JMenuItem("About Multimedia..."));
 		item.addActionListener(this);
 
@@ -1585,6 +1589,11 @@ public class PlatoFrame
 		if	(cmd.equals("Settings Menu Help..."))
 		{
 			ExternalHelp(PlatoConsts.settingsHelp);
+		}
+		
+		if	(cmd.equals("About Donald Bitzer..."))
+		{
+			ExternalHelp(PlatoConsts.dlb);
 		}
 		
 		if	(cmd.equals("About Multimedia..."))

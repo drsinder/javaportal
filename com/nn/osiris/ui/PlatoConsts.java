@@ -57,6 +57,8 @@ class PlatoConsts
 	static final String settingsHelp = "https://codex.retro1.org/plato:portal.help:platoaccess.help:settings";
 	static final String keysHelp = "https://codex.retro1.org/plato:portal.help:platoaccess.help:keyboard";
 	
+	static final String dlb = "https://ece.illinois.edu/newsroom/in-memoriam-don-bitzer";
+	
 	
 	// The rest of this file is for executing Z80 code - MTUTOR
 	
