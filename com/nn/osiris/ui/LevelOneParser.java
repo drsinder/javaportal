@@ -3906,7 +3906,7 @@ public class LevelOneParser implements java.awt.event.ActionListener
 				break;
 	// osid operating system id (0=dos,1=mac,2=unix,3=win,4=os2,5=nt,6=win95,7=java/misc,8=java/win,9=java/mac)
 			case 0x54:
-				if	(PlatoConsts.is_macintosh)
+				if	(System.getProperty("os.name").startsWith("Mac"))
 					SendEcho (9);
 				else if (PlatoConsts.is_windows)
 					SendEcho(8);

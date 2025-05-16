@@ -175,10 +175,12 @@ public class PlatoAccess extends javax.swing.JFrame
 			System.getProperties().list(System.out);
 
 		// check to see if we are on some sort of macintosh
-		if (System.getProperty("mrj.version") != null)
+		if (false && System.getProperty("os.name").startsWith("Mac"))
 		{
 			PlatoConsts.is_macintosh = true;
-			PlatoConsts.is_quicktime = true;
+		//	PlatoConsts.is_quicktime = true;
+			
+			System.out.println("Detected Mac platform...");
 		}
 		else
 		{
