@@ -215,6 +215,12 @@ public class LevelOneParser implements java.awt.event.ActionListener
 		
 	}
 
+	
+	public boolean isCybis()
+	{
+		return (levelone_network.port  != 6005 && levelone_network.port  != 8999);
+	}
+	
 	/**
 	 * Get lstatus for the session.
 	 *
@@ -3874,7 +3880,7 @@ public class LevelOneParser implements java.awt.event.ActionListener
 			case 0x71:
 				is_signed_on = true;
 				
-				if (levelone_network.port  != 6005 && levelone_network.port  != 8999)
+				if (isCybis())
 					sub_type = 16;
 				SendEcho ( sub_type);
 				break;
@@ -3907,7 +3913,7 @@ public class LevelOneParser implements java.awt.event.ActionListener
 	// osid operating system id (0=dos,1=mac,2=unix,3=win,4=os2,5=nt,6=win95,7=java/misc,8=java/win,9=java/mac)
 			case 0x54:
 				if	(System.getProperty("os.name").startsWith("Mac"))
-					SendEcho (9);
+					SendEcho(9);
 				else if (PlatoConsts.is_windows)
 					SendEcho(8);
 				else
@@ -4668,20 +4674,24 @@ public class LevelOneParser implements java.awt.event.ActionListener
 			{
 				if (disable_file_operations)
 				{
-					SendEcho(1);
+					if (!isCybis())
+						SendEcho(1);
 				}
 				else if (filename.length()==0)
 				{
-					SendEcho(2);
+					if (!isCybis())
+						SendEcho(2);
 				}
 				else if (!VerifyFilenameSumChk())
 				{
-					SendEcho(8);
+					if (!isCybis())
+						SendEcho(8);
 				}
 				else
 				{
 					if	(PlatoConsts.is_debugging)	System.out.println("imagesave to file:" + filename.toString());
-					SendEcho(9);
+					if (!isCybis())
+						SendEcho(9);
 				}	
 			}
 			else
@@ -4690,7 +4700,8 @@ public class LevelOneParser implements java.awt.event.ActionListener
 
 				if	(PlatoConsts.is_debugging)	System.out.println("imagesave to mem:" + slot);
 				if (slot < 0 || slot >= IMAGE_SLOTS)
-					SendEcho(5);
+					if (!isCybis())
+						SendEcho(5);
 				else
 				{
 				Rectangle	rect = MakeRect(ExtractWord(0),ExtractWord(3),ExtractWord(6),ExtractWord(9));
@@ -4706,7 +4717,8 @@ public class LevelOneParser implements java.awt.event.ActionListener
 						null);
 
 	// tell system it worked
-					SendEcho(0);
+					if (!isCybis())
+						SendEcho(0);
 				}
 			}
 		}
@@ -5117,26 +5129,31 @@ public class LevelOneParser implements java.awt.event.ActionListener
 		{
 			if (disable_file_operations)
 			{
-				SendEcho(1);
+				if (!isCybis())
+					SendEcho(1);
 			}
 			else if (0 == filename.length())
 			{
-				SendEcho(2);
+				if (!isCybis())
+					SendEcho(2);
 			}
 			else if (!VerifyFilenameSumChk())
 			{
-				SendEcho(8);
+				if (!isCybis())
+					SendEcho(8);
 			}
 			else if (using_resource_server)
 			{
-				SendEcho(1);
+				if (!isCybis())
+					SendEcho(1);
 			}
 			else
 			{
 			File image_file = CreateFile();
 
 				image_file.delete();
-				SendEcho(0);
+				if (!isCybis())
+					SendEcho(0);
 			}
 		}
 		else
@@ -5150,12 +5167,14 @@ public class LevelOneParser implements java.awt.event.ActionListener
 				for (i=0;i<IMAGE_SLOTS;i++)
 					image_slots[i] = null;
 
-				SendEcho(0);
+				if (!isCybis())
+					SendEcho(0);
 			}
 			else
 			{
 				image_slots[slot] = null;
-				SendEcho(0);
+				if (!isCybis())
+					SendEcho(0);
 			}
 		}
 	}
@@ -5169,7 +5188,8 @@ public class LevelOneParser implements java.awt.event.ActionListener
 	private final void ImageEcho()
 	{
 		if	(PlatoConsts.is_debugging) System.out.println("image check");
-		SendEcho(imerror);
+		if (!isCybis())
+			SendEcho(imerror);
 	}
 
 	/**
@@ -5385,21 +5405,26 @@ public class LevelOneParser implements java.awt.event.ActionListener
 			if	(PlatoConsts.is_debugging) System.out.println("trap test;"+filename.toString());
 			TrapEndInternal();
 			if (disable_file_operations)
-				SendEcho(1);
+				if (!isCybis())
+					SendEcho(1);
 			else
 			{
 				if (0 == filename.length())
-					SendEcho(2);
+					if (!isCybis())
+						SendEcho(2);
 				else if (!VerifyFilenameSumChk())
-					SendEcho(14);
+					if (!isCybis())
+						SendEcho(14);
 				else
 				{
 				File trap_file = CreateFile();
 
 					if (trap_file.isFile())
-						SendEcho(0);
+						if (!isCybis())
+							SendEcho(0);
 					else
-						SendEcho(3);
+						if (!isCybis())
+							SendEcho(3);
 				}
 			}
 		}
@@ -5423,22 +5448,26 @@ public class LevelOneParser implements java.awt.event.ActionListener
 		if	(PlatoConsts.is_debugging)	System.out.println("trap write;"+buffer+";"+filename.toString());
 		if (buffer < 0 || buffer >= TRAP_SLOTS)
 		{
-			SendEcho(6);
+			if (!isCybis())
+				SendEcho(6);
 			return;
 		}
 		else if (null == trap_slots[buffer])
 		{
-			SendEcho(11);
+			if (!isCybis())
+				SendEcho(11);
 			return;
 		}
 		else if (0 == filename.length())
 		{
-			SendEcho(2);
+			if (!isCybis())
+				SendEcho(2);
 			return;
 		}
 		else if(!VerifyFilenameSumChk())
 		{
-			SendEcho(14);
+			if (!isCybis())
+SendEcho(14);
 			return;
 		}
 
@@ -5447,12 +5476,14 @@ public class LevelOneParser implements java.awt.event.ActionListener
 		FileOutputStream	trap_file = new FileOutputStream(CreateFile());
 
 			trap_slots[buffer].writeTo(trap_file);
-			SendEcho(0);
+			if (!isCybis())
+				SendEcho(0);
 			trap_file.close();
 		}
 		catch (IOException e)
 		{
-			SendEcho(13);
+			if (!isCybis())
+				SendEcho(13);
 		}
 	}
 
@@ -5477,7 +5508,8 @@ public class LevelOneParser implements java.awt.event.ActionListener
 
 		if (buffer < 0 || buffer >= TRAP_SLOTS)
 		{
-			SendEcho(6);
+			if (!isCybis())
+				SendEcho(6);
 			return;
 		}
 
@@ -5486,19 +5518,22 @@ public class LevelOneParser implements java.awt.event.ActionListener
 
 		if (null == trap_slots[buffer])
 		{
-			SendEcho(9);
+			if (!isCybis())
+				SendEcho(9);
 			return;
 		}
 
 		trap_slots[buffer].reset();	// discard current contents
 		if (0 == filename.length())
 		{
-			SendEcho(2);
+			if (!isCybis())
+				SendEcho(2);
 			return;
 		}
 		else if (!VerifyFilenameSumChk())
 		{
-			SendEcho(14);
+			if (!isCybis())
+				SendEcho(14);
 			return;
 		}
 	File trap_file = CreateFile();
@@ -5520,11 +5555,13 @@ public class LevelOneParser implements java.awt.event.ActionListener
 				trap_slots[buffer].write(read_buffer,0,(int) remain);
 			}
 			trap_fis.close();
-			SendEcho(0);
+			if (!isCybis())
+				SendEcho(0);
 		}
 		catch (IOException e)
 		{
-			SendEcho(10);
+			if (!isCybis())
+				SendEcho(10);
 		}
 	}
 
