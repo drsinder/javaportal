@@ -929,7 +929,7 @@ public class PlatoFrame
 		if	(!PlatoConsts.is_applet)
 			readOptionsFile();
 
-		setLocation(PlatoConsts.default_xstart, 0);
+		setLocation(PlatoConsts.default_xstart, PlatoConsts.default_ystart);
 		
 		
 //		if	(PortalConsts.is_macintosh)
@@ -2093,7 +2093,7 @@ public class PlatoFrame
 			readOptionsFile();
 
 		
-			this.setLocation(PlatoConsts.default_xstart, 0);
+		setLocation(PlatoConsts.default_xstart, PlatoConsts.default_ystart);
 		
 		/*
 		if	(startup_properties.getProperty("winconfig") != null)

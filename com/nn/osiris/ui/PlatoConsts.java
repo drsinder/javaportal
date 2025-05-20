@@ -34,6 +34,7 @@ class PlatoConsts
 	static int		default_width = 640;
 	
 	static int		default_xstart =  0;
+	static int		default_ystart =  0;
 	
 	static  float  			SCALE = (float)1; 
 

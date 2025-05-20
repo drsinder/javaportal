@@ -16,6 +16,7 @@ class Options
 	boolean	lock_configuration;
 	
 	int		x_start;
+	int		y_start;
 	
 	float scale2x;
 
@@ -27,6 +28,7 @@ class Options
 		lock_configuration = false;
 		scale2x = 1;
 		x_start = 0;
+		y_start = 0;
 	}
 
 	public void copyTo(Options x)
@@ -37,6 +39,7 @@ class Options
 		x.lock_configuration = this.lock_configuration;
 		x.scale2x = this.scale2x;
 		x.x_start = this.x_start;
+		x.y_start = this.y_start;
 	}
 
 	public void toXML(StringBuffer sb)
@@ -47,6 +50,7 @@ class Options
 //		sb.append(" lock_configuration=\""+JPortal.boolString(lock_configuration)+"\"");
 		sb.append(" scalex=\""+scale2x+"\"");
 		sb.append(" x_start=\""+x_start+"\"");
+		sb.append(" y_start=\""+y_start+"\"");
 		sb.append("/>\n");
 	}
 
@@ -104,6 +108,12 @@ class Options
 			this.x_start = Integer.parseInt(n.getNodeValue());
 			PlatoConsts.default_xstart = this.x_start;
 		}
-		
+
+		n = nnm.getNamedItem("y_start");
+		if	(null != n) {
+			this.y_start = Integer.parseInt(n.getNodeValue());
+			PlatoConsts.default_ystart = this.y_start;
+		}
+
 	}
 }
