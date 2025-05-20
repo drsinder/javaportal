@@ -922,10 +922,16 @@ public class PlatoFrame
 		if	(getScreenHeight() <= 600)
 			inhibit_tabs = true;
 
-	// determine configuration file
+		// determine configuration file
 		if	(!PlatoConsts.is_applet)
 			findDefaultConfig();
+		
+		if	(!PlatoConsts.is_applet)
+			readOptionsFile();
 
+		setLocation(PlatoConsts.default_xstart, 0);
+		
+		
 //		if	(PortalConsts.is_macintosh)
 //			macOSXRegistration();
 
@@ -2086,6 +2092,9 @@ public class PlatoFrame
 		if	(!PlatoConsts.is_applet)
 			readOptionsFile();
 
+		
+			this.setLocation(PlatoConsts.default_xstart, 0);
+		
 		/*
 		if	(startup_properties.getProperty("winconfig") != null)
 		{

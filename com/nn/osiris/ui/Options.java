@@ -15,6 +15,8 @@ class Options
 	// true if configuration settings are locked
 	boolean	lock_configuration;
 	
+	int		x_start;
+	
 	float scale2x;
 
 	public Options()
@@ -24,6 +26,7 @@ class Options
 		disable_signon_display = false;
 		lock_configuration = false;
 		scale2x = 1;
+		x_start = 0;
 	}
 
 	public void copyTo(Options x)
@@ -33,6 +36,7 @@ class Options
 		x.disable_signon_display = this.disable_signon_display;
 		x.lock_configuration = this.lock_configuration;
 		x.scale2x = this.scale2x;
+		x.x_start = this.x_start;
 	}
 
 	public void toXML(StringBuffer sb)
@@ -42,6 +46,7 @@ class Options
 //		sb.append(" disable_signon_display=\""+JPortal.boolString(disable_signon_display)+"\"");
 //		sb.append(" lock_configuration=\""+JPortal.boolString(lock_configuration)+"\"");
 		sb.append(" scalex=\""+scale2x+"\"");
+		sb.append(" x_start=\""+x_start+"\"");
 		sb.append("/>\n");
 	}
 
@@ -93,5 +98,12 @@ class Options
 		n = nnm.getNamedItem("scalex");
 		if	(null != n)
 			this.scale2x = Float.parseFloat(n.getNodeValue());
+		
+		n = nnm.getNamedItem("x_start");
+		if	(null != n) {
+			this.x_start = Integer.parseInt(n.getNodeValue());
+			PlatoConsts.default_xstart = this.x_start;
+		}
+		
 	}
 }
