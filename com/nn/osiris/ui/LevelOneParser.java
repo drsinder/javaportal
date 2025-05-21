@@ -66,6 +66,8 @@ public class LevelOneParser implements java.awt.event.ActionListener
   		levelone_offscreen = g2;
   		levelone_network = n;
   		
+  		do_rule_override = true;
+  		
 		if	(PlatoConsts.is_applet)
 		{
 			original_dir = "";
@@ -9523,12 +9525,16 @@ public class LevelOneParser implements java.awt.event.ActionListener
 
 	boolean OkDraw()
 	{
+		
+		return true;
+/*		
 		if (style_pattern == 1 || do_rule_override)
 			return true;
 		else if (screen_mode == SCWRITE || screen_mode == SCERASE)
 			return false;
 		else
 			return true;
+*/
 	}
 
 	/**
