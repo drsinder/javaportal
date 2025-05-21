@@ -3,6 +3,7 @@ package com.nn.osiris.ui;
 import org.w3c.dom.*;
 //import java.io.*;
 import java.util.*;
+import java.awt.*;
 
 class Options
 {
@@ -44,14 +45,16 @@ class Options
 
 	public void toXML(StringBuffer sb)
 	{
+		Point pnt = PlatoFrame.mainFrame.getLocation();
+		
 		sb.append("<options multi_connect=\""+PlatoAccess.boolString(multi_connect)+"\"");
 		sb.append(" disconnect_at_signoff=\""+PlatoAccess.boolString(disconnect_at_signoff)+"\"");
 //		sb.append(" disable_signon_display=\""+JPortal.boolString(disable_signon_display)+"\"");
 //		sb.append(" lock_configuration=\""+JPortal.boolString(lock_configuration)+"\"");
 		sb.append(" scalex=\""+scale2x+"\"");
-		sb.append(" x_start=\""+x_start+"\"");
-		sb.append(" y_start=\""+y_start+"\"");
-		sb.append("/>\n");
+		sb.append(" x_start=\""+pnt.x+"\"");
+		sb.append(" y_start=\""+pnt.y+"\"");
+		sb.append(" />\n");
 	}
 
 	public void readProperties(Properties p)
