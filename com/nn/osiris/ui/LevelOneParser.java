@@ -1463,9 +1463,11 @@ public class LevelOneParser implements java.awt.event.ActionListener
 				ImageInfo();
 				break;
 			case 0x64:
+				//System.out.println("ImageCopy  ");
 				ImageCopy();
 				break;
 			case 0x65:
+				//System.out.println("----------------------------------------------------------------------------ImageDelete  ");
 				ImageDelete();
 				break;
 			case 0x66:
@@ -3031,7 +3033,7 @@ public class LevelOneParser implements java.awt.event.ActionListener
 	 */
 	final void SendEcho ( int value)
 	{
-		//System.out.println("--------------------------------ECHO");
+		//System.out.println("sendECHO  " + value);
 		SendEsc ( (value & 0x7f) | 0x0080);
 	}
 
@@ -5858,10 +5860,16 @@ public class LevelOneParser implements java.awt.event.ActionListener
 
 	void SetClipping()
 	{
+		//System.out.println("------------------SetClipping(" + old_x + "," + old_y + "," +  load_x + ","  +  load_y + ")");
+		
 		if ((old_x|old_y|load_x|load_y)==0)
+		{
 			ClipSet(sys_x,sys_y,wrap_x+sys_x,wrap_y+sys_y,false);
+		}
 		else
+		{
 			ClipSet (center_x+old_x,center_y+old_y,center_x+load_x,center_y+load_y,false);
+		}
 	}
 
 	/**
@@ -7147,7 +7155,7 @@ public class LevelOneParser implements java.awt.event.ActionListener
 
 	private void BoxData()
 	{
-		if (OkDraw())
+		//if (OkDraw())
 			plotBox( old_x+center_x,old_y+center_y,load_x+center_x,load_y+center_y,
 				ExtractWord ( 0),screen_mode,style_pattern,style_fill);
 	}
@@ -9525,7 +9533,6 @@ public class LevelOneParser implements java.awt.event.ActionListener
 
 	boolean OkDraw()
 	{
-		
 		return true;
 /*		
 		if (style_pattern == 1 || do_rule_override)
