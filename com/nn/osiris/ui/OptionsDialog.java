@@ -29,6 +29,7 @@ public class OptionsDialog
 	private Options			options = new Options();
 
 	private JCheckBox		disconnect_button = new JCheckBox("Disconnect at Signoff");
+	private JCheckBox		inhibit_button = new JCheckBox("Inhibit Image of the Month");
 //	private JCheckBox		lock_button = new JCheckBox("Lock Configuration");
 //	private JCheckBox		disable_name_button = new JCheckBox("Disable Signon in Title");
 //	private JCheckBox		multi_connect_button = new JCheckBox("Allow Multiple Connections");
@@ -63,6 +64,7 @@ public class OptionsDialog
 
 		// Add controls to control panel.
 		control_panel.add(disconnect_button);
+		control_panel.add(inhibit_button);
 		//control_panel.add(disable_name_button);
 		//control_panel.add(multi_connect_button);
 		
@@ -77,6 +79,7 @@ public class OptionsDialog
 		//control_panel.add(lock_button);
 
 		disconnect_button.setSelected(options.disconnect_at_signoff);
+		inhibit_button.setSelected(options.inhibit_months);
 		//lock_button.setSelected(options.lock_configuration);
 		//disable_name_button.setSelected(options.disable_signon_display);
 		//multi_connect_button.setSelected(options.multi_connect);
@@ -102,6 +105,7 @@ public class OptionsDialog
 		{
 			//disable_name_button.setEnabled(false);
 			disconnect_button.setEnabled(false);
+			inhibit_button.setEnabled(false);
 			//multi_connect_button.setEnabled(false);
 			//lock_button.setEnabled(false);
 			scale2x_button.setEnabled(false);
@@ -110,6 +114,7 @@ public class OptionsDialog
 		{
 			//disable_name_button.setEnabled(true);
 			disconnect_button.setEnabled(true);
+			inhibit_button.setEnabled(true);
 			//lock_button.setEnabled(true);
 			//multi_connect_button.setEnabled(true);
 			scale2x_button.setEnabled(true);
@@ -137,11 +142,15 @@ public class OptionsDialog
 		else if (e.getSource() == ok_button)
 		{
 			options.disconnect_at_signoff = disconnect_button.isSelected();
+			options.inhibit_months = inhibit_button.isSelected();
 			//options.lock_configuration = lock_button.isSelected();
 			//options.disable_signon_display = disable_name_button.isSelected();
 			//options.multi_connect = multi_connect_button.isSelected();
 			
 			options.scale2x = Float.valueOf(this.scale2x_button.getText());
+			
+			PlatoConsts.inhibit_months = options.inhibit_months;
+			
 			cancelled = false;
 			setVisible(false);
 		}

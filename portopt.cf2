@@ -1,5 +1,5 @@
 <?xml version="1.0" standalone='yes'?>
 <portaloptions>
-<options multi_connect="true" disconnect_at_signoff="false" scalex="2.0" x_start="2616" y_start="284" />
+<options multi_connect="true" disconnect_at_signoff="false" inhibit_months="false" scalex="2.0" x_start="2867" y_start="128" />
 
 </portaloptions>

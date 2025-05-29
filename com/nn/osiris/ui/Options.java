@@ -16,6 +16,8 @@ class Options
 	// true if configuration settings are locked
 	boolean	lock_configuration;
 	
+	public boolean inhibit_months;
+	
 	int		x_start;
 	int		y_start;
 	
@@ -30,6 +32,7 @@ class Options
 		scale2x = 1;
 		x_start = 0;
 		y_start = 0;
+		inhibit_months = false;
 	}
 
 	public void copyTo(Options x)
@@ -41,6 +44,7 @@ class Options
 		x.scale2x = this.scale2x;
 		x.x_start = this.x_start;
 		x.y_start = this.y_start;
+		x.inhibit_months = this.inhibit_months;
 	}
 
 	public void toXML(StringBuffer sb)
@@ -49,6 +53,7 @@ class Options
 		
 		sb.append("<options multi_connect=\""+PlatoAccess.boolString(multi_connect)+"\"");
 		sb.append(" disconnect_at_signoff=\""+PlatoAccess.boolString(disconnect_at_signoff)+"\"");
+		sb.append(" inhibit_months=\""+PlatoAccess.boolString(inhibit_months)+"\"");
 //		sb.append(" disable_signon_display=\""+JPortal.boolString(disable_signon_display)+"\"");
 //		sb.append(" lock_configuration=\""+JPortal.boolString(lock_configuration)+"\"");
 		sb.append(" scalex=\""+scale2x+"\"");
@@ -86,6 +91,11 @@ class Options
 		n = nnm.getNamedItem("disconnect_at_signoff");
 		if	(null != n)
 			this.disconnect_at_signoff = PlatoAccess.stringBool(n.getNodeValue());
+
+		n = nnm.getNamedItem("inhibit_months");
+		if	(null != n)
+			this.inhibit_months = PlatoAccess.stringBool(n.getNodeValue());
+
 		/*
 		n = nnm.getNamedItem("disable_signon_display");
 		if	(null != n)

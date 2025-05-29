@@ -20,6 +20,8 @@ import java.awt.event.*;
 import java.awt.image.*;
 //import java.awt.Font.*;
 import java.io.*;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.*;
 
 import javax.swing.ImageIcon;
@@ -35,7 +37,7 @@ import com.codingrodent.microprocessor.Z80.CPUConstants.RegisterNames;
 /**
  * Level one protocol parser. Decodes the level one terminal protocol.
  */
-public class LevelOneParser implements java.awt.event.ActionListener
+public class LevelOneParser implements java.awt.event.ActionListener, ImageObserver
 {
 	
 	/**
@@ -5294,177 +5296,202 @@ public class LevelOneParser implements java.awt.event.ActionListener
 		{
 		case 0x41:		//  7/20
 			show = true;
-			file_name = "moonlanding.jpg";
-			sx = 200;
-			sy  = 148;
+			file_name = PlatoConsts.imagebase+"moonlanding.jpg";
+//			sx = 200;
+//			sy  = 148;
 			break;
 		case 0x42:		//  6/14
 			show = true;
-			file_name = "USFlag.jpg";
-			sx = 200;
-			sy  = 106;
+			file_name = PlatoConsts.imagebase+"USFlag.jpg";
+//			sx = 200;
+//			sy  = 106;
 			break;
 		case 0x43:		//  6/1
 			show = true;
-			file_name = "boston-tea-party.jpg";
-			sx = 200;
-			sy  = 115;
+			file_name = PlatoConsts.imagebase+"boston-tea-party.jpg";
+//			sx = 200;
+//			sy  = 115;
 			break;
 		case 0x44:	
 			show = true;
-			file_name = "halloween.jpg";
-			sx = 200;
-			sy  = 196;
+			file_name = PlatoConsts.imagebase+"halloween.jpg";
+//			sx = 200;
+//			sy  = 196;
 			break;
 		case 0x45:	
 			show = true;
-			file_name = "thanks.jpg";
-			sx = 200;
-			sy  = 150;
+			file_name = PlatoConsts.imagebase+"thanks.jpg";
+//			sx = 200;
+//			sy  = 150;
 			break;
 		case 0x46:	
 			show = true;
-			file_name = "july4.jpg";
-			sx = 200;
-			sy  = 118;
+			file_name = PlatoConsts.imagebase+"july4.jpg";
+//			sx = 200;
+//			sy  = 118;
 			break;
 		case 0x47:	
 			show = true;
-			file_name = "newyears.jpg";
-			sx = 200;
-			sy  = 133;
+			file_name = PlatoConsts.imagebase+"newyears.jpg";
+//			sx = 200;
+//			sy  = 133;
 			break;
 		case 0x48:	
 			show = true;
-			file_name = "winter.jpg";
-			sx = 200;
+			file_name = PlatoConsts.imagebase+"winter.jpg";
+//			sx = 200;
 			sy  = 115;
-			break;
+//			break;
 		case 0x49:	
 			show = true;
-			file_name = "winter2.jpg";
-			sx = 200;
-			sy  = 113;
+			file_name = PlatoConsts.imagebase+"winter2.jpg";
+//			sx = 200;
+//			sy  = 113;
 			break;
 		case 0x4a:	
 			show = true;
-			file_name = "santa.jpg";
-			sx = 160;
-			sy  = 221;
+			file_name = PlatoConsts.imagebase+"santa.jpg";
+//			sx = 160;
+//			sy  = 221;
 			break;
 		case 0x4b:	
 			show = true;
-			file_name = "tree.jpg";
-			sx = 160;
-			sy  = 240;
+			file_name = PlatoConsts.imagebase+"tree.jpg";
+//			sx = 160;
+//			sy  = 240;
 			break;
 		case 0x4c:	
 			show = true;
-			file_name = "plato5.jpg";
-			sx = 160;
-			sy  = 220;
+			file_name = PlatoConsts.imagebase+"plato5.jpg";
+//			sx = 160;
+//			sy  = 220;
 			break;
 		case 0x4d:	
 			show = true;
-			file_name = "const.jpg";
-			sx = 160;
-			sy  = 194;
+			file_name = PlatoConsts.imagebase+"const.jpg";
+//			sx = 160;
+//			sy  = 194;
 			break;
 		case 0x4e:	
 			show = true;
-			file_name = "apollo11.jpg";
-			sx = 160;
-			sy  = 254;
+			file_name = PlatoConsts.imagebase+"apollo11.jpg";
+//			sx = 160;
+//			sy  = 254;
 			break;
 		case 0x4f:	
 			show = true;
-			file_name = "alaska.jpg";
-			sx = 200;
-			sy  = 113;
+			file_name = PlatoConsts.imagebase+"alaska.jpg";
+//			sx = 200;
+//			sy  = 113;
 			break;
 		case 0x50:	
 			show = true;
-			file_name = "illinois.jpg";
-			sx = 200;
-			sy  = 120;
+			file_name = PlatoConsts.imagebase+"illinois.jpg";
+//			sx = 200;
+//			sy  = 120;
 			break;
 		case 0x51:	
 			show = true;
-			file_name = "april1.jpg";
-			sx = 200;
-			sy  = 200;
+			file_name = PlatoConsts.imagebase+"april1.jpg";
+//			sx = 200;
+//			sy  = 200;
 			break;
 		case 0x52:	
 			show = true;
-			file_name = "feb.jpg";
-			sx = 201;
-			sy  = 148;
+			file_name = PlatoConsts.imagebase+"feb.jpg";
+//			sx = 201;
+//			sy  = 148;
 			break;
 		case 0x53:	
 			show = true;
-			file_name = "march.jpg";
-			sx = 200;
-			sy  = 148;
+			file_name = PlatoConsts.imagebase+"march.jpg";
+//			sx = 200;
+//			sy  = 148;
 			break;
 		case 0x54:	
 			show = true;
-			file_name = "april.jpg";
-			sx = 201;
-			sy  = 148;
+			file_name = PlatoConsts.imagebase+"april.jpg";
+//			sx = 201;
+//			sy  = 148;
 			break;
 		case 0x55:	
 			show = true;
-			file_name = "may.jpg";
-			sx = 182;
-			sy  = 148;
+			file_name = PlatoConsts.imagebase+"may.jpg";
+//			sx = 182;
+//			sy  = 148;
 			break;
 		case 0x56:	
 			show = true;
-			file_name = "june.jpg";
-			sx = 196;
-			sy  = 183;
+			file_name = PlatoConsts.imagebase+"june.jpg";
+//			sx = 196;
+//			sy  = 183;
 			break;
 		case 0x57:	
 			show = true;
-			file_name = "wheat.jpg";
-			sx = 201;
-			sy  = 194;
+			file_name = PlatoConsts.imagebase+"wheat.jpg";
+//			sx = 201;
+//			sy  = 194;
 			break;
 		case 0x58:	
 			show = true;
-			file_name = "august.jpg";
-			sx = 201;
-			sy  = 183;
+			file_name = PlatoConsts.imagebase+"august.jpg";
+//			sx = 201;
+//			sy  = 183;
 			break;
 		case 0x59:	
 			show = true;
-			file_name = "sept.jpg";
-			sx = 200;
-			sy  = 112;
+			file_name = PlatoConsts.imagebase+"sept.jpg";
+//			sx = 200;
+//			sy  = 112;
 			break;
 		case 0x5a:	
 			show = true;
-			file_name = "oct.jpg";
-			sx = 201;
-			sy  = 183;
+			file_name = PlatoConsts.imagebase+"oct.jpg";
+//			sx = 201;
+//			sy  = 183;
 			break;
 		case 0x5b:	
 			show = true;
-			file_name = "nov.jpg";
-			sx = 200;
-			sy  = 116;
+			file_name = PlatoConsts.imagebase+"nov.jpg";
+//			sx = 200;
+//			sy  = 116;
 			break;
 		default:
 			break;
 		}
 		
+		if (PlatoConsts.inhibit_months && ((b > 0x51) && ( b  < 0x5c) ) )
+			show = false;
+
 		if (show)
 		{
-			java.net.URL	imgURL = getClass().getResource("/com/nn/images/" + file_name);	
-			Image			file_image = java.awt.Toolkit.getDefaultToolkit().getImage((imgURL));
+			Image			file_image = null;
+			URL	imgURL = null;
+		
+			if (file_name.startsWith("http"))
+			{
+				try {
+					imgURL = new URL(file_name);
+				} catch (MalformedURLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				
+				file_image = java.awt.Toolkit.getDefaultToolkit().getImage((imgURL));
+			}
+			else
+			{
+				imgURL = getClass().getResource("/com/nn/images/" + file_name);	
+				file_image = java.awt.Toolkit.getDefaultToolkit().getImage((imgURL));
+			}
 
 			modeClipColor(false,false,false);
-
+			
+			sy = file_image.getHeight(null);
+			sx = file_image.getWidth(null);
+			
+			//System.out.println(sx);
+			
 			// render image on screen
 			do_repaint = true;
 
@@ -5473,13 +5500,43 @@ public class LevelOneParser implements java.awt.event.ActionListener
 					file_image,
 					center_x,35,center_x+sx-1,+35+sy-1,
 					0,0,sx-1,sy-1,
-					null);
-
+					this);
+				
+			levelone_container.repaint();
+	
 		}
 	}
-	
 
-	/**
+	
+	@Override
+	public boolean imageUpdate(Image img, int infoflags, int x, int y, int width, int height) {
+		// TODO Auto-generated method stub
+		int sx =0, sy = 0;
+
+		if ((infoflags & ImageObserver.ALLBITS) != 0) 
+		{
+			
+			sy = img.getHeight(null);
+			sx = img.getWidth(null);
+			
+		//	System.out.println(sx);
+
+			// render image on backing store
+			levelone_offscreen.drawImage(
+					img,
+					center_x,35,center_x+sx-1,+35+sy-1,
+					0,0,sx-1,sy-1,
+					null);
+			
+			return false;
+		}
+		
+		return true;
+	}
+	
+	
+	
+	   /**
 	 *
 	 * Save entire window as bitmap image.  Feature deemed obsolete and
 	 * is not supported.
@@ -12072,7 +12129,7 @@ public class LevelOneParser implements java.awt.event.ActionListener
 			return cpu.key2mtutor();
 		return false;
 	}
-	
+
 	
 	
 	/**

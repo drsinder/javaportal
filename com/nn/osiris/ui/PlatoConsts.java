@@ -44,10 +44,14 @@ class PlatoConsts
 	static public boolean	is_debugging = false;
 	static public boolean	is_applet = false;
 	static public boolean	is_quicktime = false;
+	
+	static public boolean   inhibit_months = false;
+	
 	// Default tcp host & port to connect to:
 	static final String	default_host = "cybis.retro1.net";
 	static final int default_port = 8005;
 	
+	static public final String imagebase = "https://www.drsinder.com/plato/download/";
 	
 	
 	// HELP strings

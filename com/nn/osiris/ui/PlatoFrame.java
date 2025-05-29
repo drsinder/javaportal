@@ -1853,6 +1853,7 @@ public class PlatoFrame
 		}
 		
 			PlatoConsts.SCALE = options.scale2x;
+			PlatoConsts.inhibit_months = options.inhibit_months;
 
 	}
 
