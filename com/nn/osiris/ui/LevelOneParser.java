@@ -22,6 +22,8 @@ import java.awt.image.*;
 import java.io.*;
 import java.util.*;
 
+import javax.swing.ImageIcon;
+
 //import com.codingrodent.microprocessor.Z80.Utilities;
 import com.codingrodent.microprocessor.Z80.Z80Core;
 import com.codingrodent.microprocessor.Z80.CPUConstants.RegisterNames;
@@ -1075,7 +1077,7 @@ public class LevelOneParser implements java.awt.event.ActionListener
 		/*60*/ICMD, DATA015, DATA027, DATA03, DATA024, DATA03, DATA00, DATA03, 
 		/*68*/DATA00, DATA00, DATA00, DATA09, ICMD, ICMD, ICMD, ICMD, 
 		/*70*/ICMD, ICMD, ICMD, ICMD, ICMD, ICMD, ICMD, ICMD, 
-		/*78*/ICMD, ICMD, ICMD, ICMD, ICMD, ICMD, ICMD, ICMD
+		/*78*/ICMD, ICMD, DATA01, ICMD, ICMD, ICMD, ICMD, ICMD
 	};
 
 	/** Next state for CMDx state by character, offset by 0x30. */
@@ -1465,6 +1467,9 @@ public class LevelOneParser implements java.awt.event.ActionListener
 			case 0x64:
 				//System.out.println("ImageCopy  ");
 				ImageCopy();
+
+				//ImageHoliday();
+
 				break;
 			case 0x65:
 				//System.out.println("----------------------------------------------------------------------------ImageDelete  ");
@@ -1488,7 +1493,15 @@ public class LevelOneParser implements java.awt.event.ActionListener
 			case 0x6b:
 	//			ImageDrag(); todo
 				break;
+				
+			case 0x7a:
+//				System.out.println("-------------------- ImageHoliday  ");
+				ImageHoliday();
+				break;
+				
 			default:
+				System.out.println("Error in cmdjp tables: "+selector);
+				
 				if	(PlatoConsts.is_debugging)	System.out.println("Error in cmdjp tables: "+selector);
 		}
 	}
@@ -2203,7 +2216,7 @@ public class LevelOneParser implements java.awt.event.ActionListener
 				return 1;
 			}
 			
-			// the following IF is needed only for Cybis/Cyber1.
+			// the following IF is needed only for Cybis/Cyber1.  Certain stuff is ignored from Cybis.
 			if (sub_type == 16 && L1PPDataMode == data_proc)  // needed only for Cybis/Cyber1.
 			{
 				if (m_pending == 0 && b == 0xff)
@@ -5267,6 +5280,204 @@ public class LevelOneParser implements java.awt.event.ActionListener
 		quicktime_player.imageStop();
 	}
 
+	void ImageHoliday()
+	{
+		byte b = data[0];
+		boolean show = false;
+		String file_name = "";
+		
+		int sx =0, sy = 0;
+		
+		//System.out.println("------------------ Holiday!!" + b);
+		
+		switch(b)
+		{
+		case 0x41:		//  7/20
+			show = true;
+			file_name = "moonlanding.jpg";
+			sx = 200;
+			sy  = 148;
+			break;
+		case 0x42:		//  6/14
+			show = true;
+			file_name = "USFlag.jpg";
+			sx = 200;
+			sy  = 106;
+			break;
+		case 0x43:		//  6/1
+			show = true;
+			file_name = "boston-tea-party.jpg";
+			sx = 200;
+			sy  = 115;
+			break;
+		case 0x44:	
+			show = true;
+			file_name = "halloween.jpg";
+			sx = 200;
+			sy  = 196;
+			break;
+		case 0x45:	
+			show = true;
+			file_name = "thanks.jpg";
+			sx = 200;
+			sy  = 150;
+			break;
+		case 0x46:	
+			show = true;
+			file_name = "july4.jpg";
+			sx = 200;
+			sy  = 118;
+			break;
+		case 0x47:	
+			show = true;
+			file_name = "newyears.jpg";
+			sx = 200;
+			sy  = 133;
+			break;
+		case 0x48:	
+			show = true;
+			file_name = "winter.jpg";
+			sx = 200;
+			sy  = 115;
+			break;
+		case 0x49:	
+			show = true;
+			file_name = "winter2.jpg";
+			sx = 200;
+			sy  = 113;
+			break;
+		case 0x4a:	
+			show = true;
+			file_name = "santa.jpg";
+			sx = 160;
+			sy  = 221;
+			break;
+		case 0x4b:	
+			show = true;
+			file_name = "tree.jpg";
+			sx = 160;
+			sy  = 240;
+			break;
+		case 0x4c:	
+			show = true;
+			file_name = "plato5.jpg";
+			sx = 160;
+			sy  = 220;
+			break;
+		case 0x4d:	
+			show = true;
+			file_name = "const.jpg";
+			sx = 160;
+			sy  = 194;
+			break;
+		case 0x4e:	
+			show = true;
+			file_name = "apollo11.jpg";
+			sx = 160;
+			sy  = 254;
+			break;
+		case 0x4f:	
+			show = true;
+			file_name = "alaska.jpg";
+			sx = 200;
+			sy  = 113;
+			break;
+		case 0x50:	
+			show = true;
+			file_name = "illinois.jpg";
+			sx = 200;
+			sy  = 120;
+			break;
+		case 0x51:	
+			show = true;
+			file_name = "april1.jpg";
+			sx = 200;
+			sy  = 200;
+			break;
+		case 0x52:	
+			show = true;
+			file_name = "feb.jpg";
+			sx = 201;
+			sy  = 148;
+			break;
+		case 0x53:	
+			show = true;
+			file_name = "march.jpg";
+			sx = 200;
+			sy  = 148;
+			break;
+		case 0x54:	
+			show = true;
+			file_name = "april.jpg";
+			sx = 201;
+			sy  = 148;
+			break;
+		case 0x55:	
+			show = true;
+			file_name = "may.jpg";
+			sx = 182;
+			sy  = 148;
+			break;
+		case 0x56:	
+			show = true;
+			file_name = "june.jpg";
+			sx = 196;
+			sy  = 183;
+			break;
+		case 0x57:	
+			show = true;
+			file_name = "wheat.jpg";
+			sx = 201;
+			sy  = 194;
+			break;
+		case 0x58:	
+			show = true;
+			file_name = "august.jpg";
+			sx = 201;
+			sy  = 183;
+			break;
+		case 0x59:	
+			show = true;
+			file_name = "sept.jpg";
+			sx = 200;
+			sy  = 112;
+			break;
+		case 0x5a:	
+			show = true;
+			file_name = "oct.jpg";
+			sx = 201;
+			sy  = 183;
+			break;
+		case 0x5b:	
+			show = true;
+			file_name = "nov.jpg";
+			sx = 200;
+			sy  = 116;
+			break;
+		default:
+			break;
+		}
+		
+		if (show)
+		{
+			java.net.URL	imgURL = getClass().getResource("/com/nn/images/" + file_name);	
+			Image			file_image = java.awt.Toolkit.getDefaultToolkit().getImage((imgURL));
+
+			modeClipColor(false,false,false);
+
+			// render image on screen
+			do_repaint = true;
+
+			// render image on backing store
+			levelone_offscreen.drawImage(
+					file_image,
+					center_x,35,center_x+sx-1,+35+sy-1,
+					0,0,sx-1,sy-1,
+					null);
+
+		}
+	}
+	
 
 	/**
 	 *
