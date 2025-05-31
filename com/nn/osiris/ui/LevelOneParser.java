@@ -562,6 +562,8 @@ public class LevelOneParser implements java.awt.event.ActionListener, ImageObser
 	/** -print- variables */
 	PrintInterface	print_interface;
 
+	private int image_x;
+	private int image_y;
 
 	/** Sequence in Test mode data. */
 	private int testseq;
@@ -4530,6 +4532,16 @@ public class LevelOneParser implements java.awt.event.ActionListener, ImageObser
 		return false;
 	}
 
+	private final boolean IsHttp(StringBuffer x)
+	{
+	String test = x.toString();
+
+		if (test.startsWith("https://") ||  test.startsWith("http://"))
+			return true;
+
+		return false;
+	}
+	
 	/**
 	 *
 	 * Returns true if stringbuffer describes a quicktime still picture format.
@@ -4876,6 +4888,43 @@ public class LevelOneParser implements java.awt.event.ActionListener, ImageObser
 			{
 				imerror = 8;
 			}
+			
+			else if (IsHttp(filename))
+			{
+				String file_name = filename.toString();
+				Image  file_image = null;
+				URL	imgURL = null;
+				
+				try {
+					imgURL = new URL(file_name);
+				} catch (MalformedURLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+					
+				file_image = java.awt.Toolkit.getDefaultToolkit().getImage((imgURL));
+
+				MediaTracker	tracker = new MediaTracker(levelone_container);
+				
+				tracker.addImage(file_image,1);
+				try {
+					tracker.waitForID(1);
+				} catch (InterruptedException e) {
+					// TODO Auto-generated catch block
+					SendPixRes(0,0777777,11,0);
+					return;
+				}
+/*
+				if (!tracker.isErrorAny())
+				{
+					SendPixRes(0,0777777,11,0);
+					return;
+				}
+*/
+				if (null != file_image)
+					ImageRender(file_image);
+			}
+
 			else if (using_resource_server)
 			{
 			String file_url = CreateURL();
@@ -4986,6 +5035,46 @@ public class LevelOneParser implements java.awt.event.ActionListener, ImageObser
 			{
 				SendPixRes(0,0777777,8,0);
 			}
+		
+			else if (IsHttp(filename))
+			{
+				String file_name = filename.toString();
+				Image  file_image = null;
+				URL	imgURL = null;
+				
+				try {
+					imgURL = new URL(file_name);
+				} catch (MalformedURLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+					
+				file_image = java.awt.Toolkit.getDefaultToolkit().getImage((imgURL));
+
+				MediaTracker	tracker = new MediaTracker(levelone_container);
+				
+				tracker.addImage(file_image,1);
+				try {
+					tracker.waitForID(1);
+				} catch (InterruptedException e) {
+					// TODO Auto-generated catch block
+					SendPixRes(0,0777777,11,0);
+					return;
+				}
+/*
+				if (!tracker.isErrorAny())
+				{
+					SendPixRes(0,0777777,11,0);
+					return;
+				}
+*/
+				int width = file_image.getWidth(nil_observer);
+				int height = file_image.getHeight(nil_observer);
+			
+				SendPixRes(0,width,height,0);
+
+			}
+			
 			else if (using_resource_server)
 			{
 			String 		file_url = CreateURL();
@@ -5297,176 +5386,129 @@ public class LevelOneParser implements java.awt.event.ActionListener, ImageObser
 		case 0x41:		//  7/20
 			show = true;
 			file_name = PlatoConsts.imagebase+"moonlanding.jpg";
-//			sx = 200;
-//			sy  = 148;
 			break;
 		case 0x42:		//  6/14
 			show = true;
 			file_name = PlatoConsts.imagebase+"USFlag.jpg";
-//			sx = 200;
-//			sy  = 106;
 			break;
 		case 0x43:		//  6/1
 			show = true;
 			file_name = PlatoConsts.imagebase+"boston-tea-party.jpg";
-//			sx = 200;
-//			sy  = 115;
 			break;
 		case 0x44:	
 			show = true;
 			file_name = PlatoConsts.imagebase+"halloween.jpg";
-//			sx = 200;
-//			sy  = 196;
 			break;
 		case 0x45:	
 			show = true;
 			file_name = PlatoConsts.imagebase+"thanks.jpg";
-//			sx = 200;
-//			sy  = 150;
 			break;
 		case 0x46:	
 			show = true;
 			file_name = PlatoConsts.imagebase+"july4.jpg";
-//			sx = 200;
-//			sy  = 118;
 			break;
 		case 0x47:	
 			show = true;
 			file_name = PlatoConsts.imagebase+"newyears.jpg";
-//			sx = 200;
-//			sy  = 133;
 			break;
 		case 0x48:	
 			show = true;
 			file_name = PlatoConsts.imagebase+"winter.jpg";
-//			sx = 200;
-			sy  = 115;
-//			break;
+			break;
 		case 0x49:	
 			show = true;
 			file_name = PlatoConsts.imagebase+"winter2.jpg";
-//			sx = 200;
-//			sy  = 113;
 			break;
 		case 0x4a:	
 			show = true;
 			file_name = PlatoConsts.imagebase+"santa.jpg";
-//			sx = 160;
-//			sy  = 221;
 			break;
 		case 0x4b:	
 			show = true;
 			file_name = PlatoConsts.imagebase+"tree.jpg";
-//			sx = 160;
-//			sy  = 240;
 			break;
 		case 0x4c:	
 			show = true;
 			file_name = PlatoConsts.imagebase+"plato5.jpg";
-//			sx = 160;
-//			sy  = 220;
 			break;
 		case 0x4d:	
 			show = true;
 			file_name = PlatoConsts.imagebase+"const.jpg";
-//			sx = 160;
-//			sy  = 194;
 			break;
 		case 0x4e:	
 			show = true;
 			file_name = PlatoConsts.imagebase+"apollo11.jpg";
-//			sx = 160;
-//			sy  = 254;
 			break;
 		case 0x4f:	
 			show = true;
 			file_name = PlatoConsts.imagebase+"alaska.jpg";
-//			sx = 200;
-//			sy  = 113;
 			break;
 		case 0x50:	
 			show = true;
 			file_name = PlatoConsts.imagebase+"illinois.jpg";
-//			sx = 200;
-//			sy  = 120;
 			break;
 		case 0x51:	
 			show = true;
 			file_name = PlatoConsts.imagebase+"april1.jpg";
-//			sx = 200;
-//			sy  = 200;
 			break;
 		case 0x52:	
 			show = true;
 			file_name = PlatoConsts.imagebase+"feb.jpg";
-//			sx = 201;
-//			sy  = 148;
 			break;
 		case 0x53:	
 			show = true;
 			file_name = PlatoConsts.imagebase+"march.jpg";
-//			sx = 200;
-//			sy  = 148;
 			break;
 		case 0x54:	
 			show = true;
 			file_name = PlatoConsts.imagebase+"april.jpg";
-//			sx = 201;
-//			sy  = 148;
 			break;
 		case 0x55:	
 			show = true;
 			file_name = PlatoConsts.imagebase+"may.jpg";
-//			sx = 182;
-//			sy  = 148;
 			break;
 		case 0x56:	
 			show = true;
 			file_name = PlatoConsts.imagebase+"june.jpg";
-//			sx = 196;
-//			sy  = 183;
 			break;
 		case 0x57:	
 			show = true;
-			file_name = PlatoConsts.imagebase+"wheat.jpg";
-//			sx = 201;
-//			sy  = 194;
+			file_name = PlatoConsts.imagebase+"july.jpg";
 			break;
 		case 0x58:	
 			show = true;
 			file_name = PlatoConsts.imagebase+"august.jpg";
-//			sx = 201;
-//			sy  = 183;
 			break;
 		case 0x59:	
 			show = true;
 			file_name = PlatoConsts.imagebase+"sept.jpg";
-//			sx = 200;
-//			sy  = 112;
 			break;
 		case 0x5a:	
 			show = true;
 			file_name = PlatoConsts.imagebase+"oct.jpg";
-//			sx = 201;
-//			sy  = 183;
 			break;
 		case 0x5b:	
 			show = true;
 			file_name = PlatoConsts.imagebase+"nov.jpg";
-//			sx = 200;
-//			sy  = 116;
+			break;
+		case 0x5c:	
+			show = true;
+			file_name = PlatoConsts.imagebase+"jan.jpg";
 			break;
 		default:
 			break;
 		}
 		
-		if (PlatoConsts.inhibit_months && ((b > 0x51) && ( b  < 0x5c) ) )
+		if (PlatoConsts.inhibit_months && ((b > 0x51) && ( b  < 0x5d) ) )
 			show = false;
 
 		if (show)
 		{
 			Image			file_image = null;
 			URL	imgURL = null;
+			
+			image_x = current_x;
+			image_y = current_y;
 		
 			if (file_name.startsWith("http"))
 			{
@@ -5477,14 +5519,16 @@ public class LevelOneParser implements java.awt.event.ActionListener, ImageObser
 					e.printStackTrace();
 				}
 				
-				file_image = java.awt.Toolkit.getDefaultToolkit().getImage((imgURL));
+			//	file_image = java.awt.Toolkit.getDefaultToolkit().getImage((imgURL));
 			}
 			else
 			{
 				imgURL = getClass().getResource("/com/nn/images/" + file_name);	
-				file_image = java.awt.Toolkit.getDefaultToolkit().getImage((imgURL));
+			//	file_image = java.awt.Toolkit.getDefaultToolkit().getImage((imgURL));
 			}
 
+			file_image = java.awt.Toolkit.getDefaultToolkit().getImage((imgURL));
+			
 			modeClipColor(false,false,false);
 			
 			sy = file_image.getHeight(null);
@@ -5498,7 +5542,7 @@ public class LevelOneParser implements java.awt.event.ActionListener, ImageObser
 			// render image on backing store
 			levelone_offscreen.drawImage(
 					file_image,
-					center_x,35,center_x+sx-1,+35+sy-1,
+					center_x+image_x,512-image_y,center_x+image_x+sx-1,512-image_y+sy-1,
 					0,0,sx-1,sy-1,
 					this);
 				
@@ -5511,25 +5555,26 @@ public class LevelOneParser implements java.awt.event.ActionListener, ImageObser
 	@Override
 	public boolean imageUpdate(Image img, int infoflags, int x, int y, int width, int height) {
 		// TODO Auto-generated method stub
-		int sx =0, sy = 0;
+		//int sx =0, sy = 0;
 
 		if ((infoflags & ImageObserver.ALLBITS) != 0) 
 		{
-			
-			sy = img.getHeight(null);
-			sx = img.getWidth(null);
-			
-		//	System.out.println(sx);
+			//System.out.println(width);
 
 			// render image on backing store
 			levelone_offscreen.drawImage(
 					img,
-					center_x,35,center_x+sx-1,+35+sy-1,
-					0,0,sx-1,sy-1,
+					center_x+image_x,512-image_y,center_x+image_x+width-1,512-image_y+height-1,
+					x,y,width-1,height-1,
 					null);
 			
 			return false;
 		}
+        if ((infoflags & ImageObserver.ERROR) != 0 || (infoflags & ImageObserver.ABORT) != 0) {
+            // Error or abort occurred
+          //System.err.println("Error loading image");
+            return false; // No more updates needed
+        }
 		
 		return true;
 	}

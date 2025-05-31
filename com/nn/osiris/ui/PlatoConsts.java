@@ -51,7 +51,7 @@ class PlatoConsts
 	static final String	default_host = "cybis.retro1.net";
 	static final int default_port = 8005;
 	
-	static public final String imagebase = "https://www.drsinder.com/plato/download/";
+	static public final String imagebase = "https://www.drsinder.com/plato/download/wtp/";
 	
 	
 	// HELP strings
