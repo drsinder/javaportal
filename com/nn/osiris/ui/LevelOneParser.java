@@ -6575,7 +6575,7 @@ public class LevelOneParser implements java.awt.event.ActionListener, ImageObser
 
 			try
 			{
-				if (executable.startsWith("http:"))
+				if (executable.startsWith("http:") || executable.startsWith("https:"))
 				{
 					if	(null != parent_frame && parent_frame instanceof PlatoFrame)
 						((PlatoFrame) parent_frame).openURL(executable);
