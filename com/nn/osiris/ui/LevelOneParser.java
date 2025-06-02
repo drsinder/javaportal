@@ -6552,13 +6552,14 @@ public class LevelOneParser implements java.awt.event.ActionListener, ImageObser
 		{
 		String	executable = filename.toString();
 		File	fileref = smartFile(swabFile(executable));
-
+/*
 			if	(executable.endsWith("launchA7.apm"))
 			{
 				local_os_cmdp = executable.indexOf("launchA7.apm");
 				LocalOSCFMLaunch(false);
 				return;
 			}
+*/
 /* -- this doesn't work!
 			else if (executable.endsWith("launchFL.app"))
 			{
@@ -6568,8 +6569,8 @@ public class LevelOneParser implements java.awt.event.ActionListener, ImageObser
 			}
 */
 
-			if	(fileref.exists())
-				executable = fileref.getAbsolutePath();
+//			if	(fileref.exists())
+//				executable = fileref.getAbsolutePath();
 
 			if	(PlatoConsts.is_debugging)	System.out.println("local execute: "+executable);
 
@@ -6582,6 +6583,7 @@ public class LevelOneParser implements java.awt.event.ActionListener, ImageObser
 					LocalExecuteResult(0);
 					return;
 				}
+/*
 				else
 				{
 				// just use exec for other platforms
@@ -6589,6 +6591,7 @@ public class LevelOneParser implements java.awt.event.ActionListener, ImageObser
 						new File(current_dir));
 					return;
 				}
+*/
 			}
 			catch (java.io.IOException e)
 			{
