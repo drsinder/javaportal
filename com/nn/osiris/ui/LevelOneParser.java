@@ -4921,7 +4921,7 @@ public class LevelOneParser implements java.awt.event.ActionListener, ImageObser
 					return;
 				}
 */
-				if (null != file_image)
+				if ( !PlatoConsts.inhibit_months && null != file_image)
 					ImageRender(file_image);
 			}
 
