@@ -4884,10 +4884,10 @@ public class LevelOneParser implements java.awt.event.ActionListener, ImageObser
 			{
 				imerror = 2;
 			}
-			else if (!VerifyFilenameSumChk())
-			{
-				imerror = 8;
-			}
+//			else if (!VerifyFilenameSumChk())
+//			{
+//				imerror = 8;
+//			}
 			
 			else if (IsHttp(filename))
 			{
@@ -5031,10 +5031,10 @@ public class LevelOneParser implements java.awt.event.ActionListener, ImageObser
 			{
 				SendPixRes(0,0777777,2,0);
 			}
-			else if (!VerifyFilenameSumChk())
-			{
-				SendPixRes(0,0777777,8,0);
-			}
+//			else if (!VerifyFilenameSumChk())
+//			{
+//				SendPixRes(0,0777777,8,0);
+//			}
 		
 			else if (IsHttp(filename))
 			{
@@ -9867,8 +9867,11 @@ public class LevelOneParser implements java.awt.event.ActionListener, ImageObser
 	 */
 	final boolean VerifyFilenameSumChk()
 	{
-	int i,xsumchk=0,intbyte;
+//		int i,xsumchk=0,intbyte;
 
+		return true;
+
+/*
 		for (i=0; i<filename.length(); i++)
 		{
 			intbyte = filename.charAt(i);
@@ -9876,6 +9879,7 @@ public class LevelOneParser implements java.awt.event.ActionListener, ImageObser
 		}
 
 		return xsumchk == filename_sum_check;
+*/
 	}
 
 	/**
