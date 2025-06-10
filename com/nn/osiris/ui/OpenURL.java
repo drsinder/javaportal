@@ -13,6 +13,9 @@ public class OpenURL
 	          
 	          //making a desktop object
 	          Desktop desktop = Desktop.getDesktop();
+	          if (!desktop.isSupported(Desktop.Action.BROWSE ))
+	        	  return;
+	          
 	          try {
 	             URI uri = new URI(url);
 	             desktop.browse(uri);

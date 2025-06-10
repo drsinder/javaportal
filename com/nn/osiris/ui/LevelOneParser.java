@@ -3862,8 +3862,8 @@ public class LevelOneParser implements java.awt.event.ActionListener, ImageObser
 			x = name + " / " + group;
 		}
 		
-		((PlatoFrame)parent_frame).setTitle((LevelOnePanel)(levelone_container), levelone_network.host + ":" + levelone_network.port + " | " + x);
-		
+//		((PlatoFrame)parent_frame).setTitle((LevelOnePanel)(levelone_container), levelone_network.host + ":" + levelone_network.port + " | " + x);
+		((PlatoFrame)parent_frame).setTitle((LevelOnePanel)(levelone_container), x);
 	}
 	
 	
@@ -3933,6 +3933,13 @@ public class LevelOneParser implements java.awt.event.ActionListener, ImageObser
 					SendEcho(8);
 				else
 					SendEcho(7);
+				break;
+				
+			case 0x55:
+				if(PlatoConsts.inhibit_months)
+					SendEcho(0);
+				else
+					SendEcho(1);
 				break;
 	// catchup echo -- wait for display synchronization
 			case 0x48:
@@ -4921,7 +4928,7 @@ public class LevelOneParser implements java.awt.event.ActionListener, ImageObser
 					return;
 				}
 */
-				if ( !PlatoConsts.inhibit_months && null != file_image)
+				if (null != file_image)
 					ImageRender(file_image);
 			}
 
@@ -7607,7 +7614,7 @@ public class LevelOneParser implements java.awt.event.ActionListener, ImageObser
 		else if (filename.toString().startsWith("wtitle"))
 		{
 			if	(null != parent_frame && parent_frame instanceof PlatoFrame)
-				((PlatoFrame)parent_frame).setTitle((LevelOnePanel) levelone_container,filename.toString().substring(7));
+				((PlatoFrame)parent_frame).setTitle((LevelOnePanel) levelone_container,filename.toString().substring(7) + " / nova");
 			SendEcho(0);
 		}
 		else if (disable_file_operations)

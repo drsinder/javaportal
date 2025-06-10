@@ -29,7 +29,7 @@ public class OptionsDialog
 	private Options			options = new Options();
 
 	private JCheckBox		disconnect_button = new JCheckBox("Disconnect at Signoff");
-	private JCheckBox		inhibit_button = new JCheckBox("Inhibit Images");
+	private JCheckBox		inhibit_button = new JCheckBox("Inhibit Images on Login");
 //	private JCheckBox		lock_button = new JCheckBox("Lock Configuration");
 //	private JCheckBox		disable_name_button = new JCheckBox("Disable Signon in Title");
 //	private JCheckBox		multi_connect_button = new JCheckBox("Allow Multiple Connections");
