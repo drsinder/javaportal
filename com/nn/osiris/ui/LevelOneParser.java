@@ -3862,8 +3862,8 @@ public class LevelOneParser implements java.awt.event.ActionListener, ImageObser
 			x = name + " / " + group;
 		}
 		
-//		((PlatoFrame)parent_frame).setTitle((LevelOnePanel)(levelone_container), levelone_network.host + ":" + levelone_network.port + " | " + x);
-		((PlatoFrame)parent_frame).setTitle((LevelOnePanel)(levelone_container), x);
+		((PlatoFrame)parent_frame).setTitle((LevelOnePanel)(levelone_container), levelone_network.host + ":" + levelone_network.port + " | " + x);
+//		((PlatoFrame)parent_frame).setTitle((LevelOnePanel)(levelone_container), x);
 	}
 	
 	
@@ -7614,7 +7614,7 @@ public class LevelOneParser implements java.awt.event.ActionListener, ImageObser
 		else if (filename.toString().startsWith("wtitle"))
 		{
 			if	(null != parent_frame && parent_frame instanceof PlatoFrame)
-				((PlatoFrame)parent_frame).setTitle((LevelOnePanel) levelone_container,filename.toString().substring(7) + " / nova");
+				((PlatoFrame)parent_frame).setTitle((LevelOnePanel) levelone_container,levelone_network.host + ":" + levelone_network.port + " | " + filename.toString().substring(7) + " / nova");
 			SendEcho(0);
 		}
 		else if (disable_file_operations)
